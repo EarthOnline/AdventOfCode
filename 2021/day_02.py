@@ -5,7 +5,7 @@ INPUT = open("./input_files/input_02", "r").read().strip("\n")
 # up 3
 # down 8
 # forward 2"""
-INSTRUCTIONS = [tuple(c if i % 2 == 0 else int(c) for i, c in enumerate(x.split(" "))) for x in INPUT.split("\n")]
+INSTRUCTIONS = list(map(lambda x: (x[0], int(x[1])), [x.split(" ") for x in INPUT.split("\n")]))
 
 
 MACHINE = {
