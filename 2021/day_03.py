@@ -24,9 +24,9 @@ def run_1():
     return gamma * epsylon
 
 
-def count_bias_1(options: List[str], option: str):
+def count_bias(options: List[str], option: str, bias: str):
     counted = options.count(option)
-    return counted + .1 if option == '1' else counted
+    return counted + .1 if option == bias else counted
 
 
 def run_2():
@@ -36,7 +36,7 @@ def run_2():
     position = 0
     while len(ogr) > 1 or len(csr) > 1:
         options = [d[position] for d in ogr]
-        max_bit = max(set(options), key=lambda x: count_bias_1(options, x))
+        max_bit = max(set(options), key=lambda x: count_bias(options, x, '1'))
         ogr = [d for d in ogr if d[position] == max_bit]
         position += 1
 
@@ -45,7 +45,7 @@ def run_2():
         options = [d[position] for d in csr]
         # min_bit = min(options, key=options.count)
         # min_bit = '0' if len(options) % 2 == 0 and options.count(min_bit) == len(options) // 2 else min_bit
-        min_bit = min(set(options), key=lambda x: count_bias_1(options, x))
+        min_bit = min(set(options), key=lambda x: count_bias(options, x, '1'))
         csr = [d for d in csr if d[position] == min_bit]
         position += 1
 
