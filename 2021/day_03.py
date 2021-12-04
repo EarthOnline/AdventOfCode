@@ -34,7 +34,7 @@ def run_2():
     csr = DIAGNOSTICS
 
     position = 0
-    while len(ogr) > 1 or len(csr) > 1:
+    while len(ogr) > 1:
         options = [d[position] for d in ogr]
         max_bit = max(set(options), key=lambda x: count_bias(options, x, '1'))
         ogr = [d for d in ogr if d[position] == max_bit]
