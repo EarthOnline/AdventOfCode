@@ -10,17 +10,21 @@ def lantern_simulation(days: int) -> int:
         fishy[x] += 1
 
     for d in range(days):
-        fishy = [
-            fishy[1],
-            fishy[2],
-            fishy[3],
-            fishy[4],
-            fishy[5],
-            fishy[6],
-            fishy[7] + fishy[0],
-            fishy[8],
-            fishy[0]
-        ]
+        # fishy = [
+        #     fishy[1],
+        #     fishy[2],
+        #     fishy[3],
+        #     fishy[4],
+        #     fishy[5],
+        #     fishy[6],
+        #     fishy[7] + fishy[0],
+        #     fishy[8],
+        #     fishy[0]
+        # ]
+
+        new_fish = fishy.pop(0)
+        fishy[6] += new_fish
+        fishy.append(new_fish)
 
     return sum(fishy)
 
