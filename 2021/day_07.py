@@ -10,7 +10,7 @@ def run_1():
     return min(sum(map(lambda x: abs(x - p), SUBMARINES)) for p in range(SUB_MIN, SUB_MAX))
 
 
-def run_2():
+def run_2():  # aantal_integers * (start_positie + eind_positie) / 2 == n * (n + 1) // 2
     return min(sum(d * (d+1) // 2 for d in map(lambda x: abs(x - p), SUBMARINES)) for p in range(SUB_MIN, SUB_MAX))
 
 
