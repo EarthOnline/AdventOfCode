@@ -1,4 +1,5 @@
 from collections import defaultdict
+from itertools import chain
 from typing import Dict, List, Set
 
 from copy import copy
@@ -32,15 +33,16 @@ def find_paths(start: str, end: str, current_path: List[str], can_cheat: bool = 
     if start == end:
         return [current_path]
 
-    paths = []
-    for option in PATHS.get(start, []):
-        if can_cheat is False and option in ONLY_ONCE and option in current_path:
-            continue
-        _can_cheat = can_cheat ^ (option in ONLY_ONCE and option in current_path)
-        _cp = copy(current_path)
-        _cp.append(option)
-        paths.extend(find_paths(option, end, _cp, _can_cheat))
-    return paths
+    def no_option(option: str) -> bool:
+        return can_cheat is False and option in ONLY_ONCE and option in current_path
+
+    def paths(option: str) -> List[List[str]]:
+        return find_paths(option,
+                          end,
+                          current_path + [option],
+                          can_cheat ^ (option in ONLY_ONCE and option in current_path))
+
+    return list(chain.from_iterable(paths(o) for o in PATHS.get(start, []) if not no_option(o)))
 
 
 def run_1():
