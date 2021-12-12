@@ -2,8 +2,6 @@ from collections import defaultdict
 from itertools import chain
 from typing import Dict, List, Set
 
-from copy import copy
-
 INPUT = open("./input_files/input_12", "r").read().strip("\n")
 # INPUT = """start-A
 # start-b
