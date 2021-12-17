@@ -1,5 +1,5 @@
 INPUT = open("./input_files/input_07", "r").read().strip("\n")
-# INPUT = """16,1,2,0,4,2,7,1,2,14"""
+INPUT = """16,1,2,0,4,2,7,1,2,14"""
 SUBMARINES = [int(x) for x in INPUT.split(',')]
 
 SUB_MIN = min(SUBMARINES)

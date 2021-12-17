@@ -39,17 +39,7 @@ def prope_trajectory(x_vel: int, y_vel: int) -> List[Tuple[int, int]]:
 
 
 def run_1():
-    return (MIN_Y + (0 if MIN_Y % 2 else 1)) * (MIN_Y // 2)
-
-    # trials = product(range(MAX_X + 1), range(MIN_Y, abs(MIN_Y) + 1))
-    # reached = 0
-    # for x_vel, y_vel in trials:
-    #     route = list(prope_trajectory(x_vel, y_vel))
-    #     if not reach_target(route):
-    #         continue
-    #
-    #     reached = max(reached, max(y for x, y in route))
-    # return reached
+    return MIN_Y * (MIN_Y + 1) // 2
 
 
 def run_2():
