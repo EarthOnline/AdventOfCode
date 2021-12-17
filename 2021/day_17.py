@@ -44,7 +44,7 @@ def run_1():
 
 def run_2():
     trials = product(range(MAX_X + 1), range(MIN_Y, abs(MIN_Y) + 1))
-    return sum(reach_target(list(prope_trajectory(x_vel, y_vel))) for x_vel, y_vel in trials)
+    return sum(reach_target(prope_trajectory(x_vel, y_vel)) for x_vel, y_vel in trials)
 
 
 print(run_1())
