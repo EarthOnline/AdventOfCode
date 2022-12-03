@@ -43,9 +43,9 @@ def play(hitpoints, damage, armor):
     players_turn = True
     while boss_hitpoints > 0 and hitpoints > 0:
         if players_turn:
-            boss_hitpoints -= damage - boss_armor
+            boss_hitpoints -= max(damage - boss_armor, 1)
         else:
-            hitpoints -= boss_damage - armor
+            hitpoints -= max(boss_damage - armor, 1)
 
         players_turn = not players_turn
 
