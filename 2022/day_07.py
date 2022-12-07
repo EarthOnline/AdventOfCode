@@ -54,7 +54,7 @@ def run_1():
 def run_2():
     space = 70000000 - FILESYSTEM.root_size
     needed = 30000000 - space
-    return sorted(x for x in FILESYSTEM.dir_sizes if x >= needed)[0]
+    return min(x for x in FILESYSTEM.dir_sizes if x >= needed)
 
 
 print(run_1())
