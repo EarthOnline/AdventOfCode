@@ -3,17 +3,15 @@ INPUT = open("./input_files/input_08", "r").read().strip("\n")
 
 class Forest:
     def __init__(self):
-        self.grid = self.create_grid()
+        self.grid = dict(self.create_grid())
         self.max_x = max(x for x, y in self.grid.keys())
         self.max_y = max(y for x, y in self.grid.keys())
 
     @staticmethod
     def create_grid():
-        grid = {}
         for y, row in enumerate(INPUT.split('\n')):
             for x, value in enumerate(row):
-                grid[(x, y)] = int(value)
-        return grid
+                yield (x, y), int(value)
 
     def is_visible(self, x, y):
         size = self.grid[(x, y)]
