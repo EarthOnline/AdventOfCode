@@ -4,11 +4,11 @@ GROUPS = [tuple(tuple(int(z) for z in y.split('-')) for y in x.split(',')) for x
 
 
 def run_1():
-    return sum(1 for x, y in GROUPS if (x[0] >= y[0] and x[1] <= y[1]) or (y[0] >= x[0] and y[1] <= x[1]))
+    return sum((x[0] >= y[0] and x[1] <= y[1]) or (y[0] >= x[0] and y[1] <= x[1]) for x, y in GROUPS)
 
 
 def run_2():
-    return sum(1 for x, y in GROUPS if (x[0] <= y[1] and x[1] >= y[0]))
+    return sum((x[0] <= y[1] and x[1] >= y[0]) for x, y in GROUPS)
 
 
 print(run_1())
