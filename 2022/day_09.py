@@ -33,8 +33,7 @@ class Rope:
         x, y = self.knots[0] = self.STEPS[direction](*self.knots[0])
 
         for _i, node in enumerate(self.knots[1:], start=1):
-            x, y = self.move_next(x, y, node)
-            self.knots[_i] = (x, y)
+            x, y = self.knots[_i] = self.move_next(x, y, node)
 
         self.tail_possitions.add(self.knots[-1])
 
