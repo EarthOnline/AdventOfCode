@@ -44,19 +44,18 @@ class Rope:
         _x, _y = node
         return self.one_closer(x, _x), self.one_closer(y, _y)
 
+    def execute_commands(self, moves):
+        for command, times in moves:
+            self.moves(command, times)
+        return len(self.tail_possitions)
+
 
 def run_1():
-    rope = Rope()
-    for command, times in MOVES:
-        rope.moves(command, times)
-    return len(rope.tail_possitions)
+    return Rope().execute_commands(MOVES)
 
 
 def run_2():
-    rope = Rope(10)
-    for command, times in MOVES:
-        rope.moves(command, times)
-    return len(rope.tail_possitions)
+    return Rope(10).execute_commands(MOVES)
 
 
 print(run_1())
