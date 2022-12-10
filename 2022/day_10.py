@@ -7,17 +7,16 @@ class Screen:
     def __init__(self):
         self.cycles = 1
         self.register = 1
-        self.pointer = 20
-        self.signal_strengths = []
+
+        self.signal_strength = 0
 
         self.screen_buffer = []
 
     def _add_cycle(self):
-        if self.cycles == self.pointer:
-            self.pointer += 40
-            self.signal_strengths.append(self.cycles * self.register)
-        self.screen_buffer.append(
-            '#' if (self.cycles - 1) % 40 in (self.register - 1, self.register, self.register + 1) else ' ')
+        self.signal_strength += self.cycles * self.register if self.cycles % 40 - 20 == 0 else 0
+
+        self.screen_buffer.append('#' if (self.cycles - 1) % 40 in [self.register + x for x in (-1, 0, 1)] else ' ')
+
         self.cycles += 1
 
     def _action(self, instruction):
@@ -46,7 +45,7 @@ class Screen:
 def run_1_2():
     screen = Screen()
     screen.run(INSTRUCTIONS)
-    print(sum(screen.signal_strengths))
+    print(screen.signal_strength)
     screen.draw_screen()
 
 
