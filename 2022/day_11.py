@@ -22,9 +22,6 @@ class Monkey:
         result['target_2'] = int(text_input[5].split(' ')[-1])
         return result
 
-    def test(self, item):
-        return item % self.test_value == 0
-
     def __init__(self, starting_items, operation, test_value, target_1, target_2):
         self.items = starting_items
         self.operation = operation
@@ -33,6 +30,9 @@ class Monkey:
         self.target_2 = target_2
 
         self.inspectiont_count = 0
+
+    def test(self, item):
+        return item % self.test_value == 0
 
     def round(self, monkeys, anxiety_management):
         items = copy(self.items)
