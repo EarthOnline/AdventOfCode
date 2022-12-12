@@ -7,14 +7,7 @@ INPUT = open("./input_files/input_12", "r").read().strip("\n")
 def create_grid():
     for y, row in enumerate(INPUT.split('\n')):
         for x, value in enumerate(row):
-            match value:
-                case 'S':
-                    _value = 0
-                case 'E':
-                    _value = 27
-                case _:
-                    _value = string.ascii_lowercase.index(value) + 1
-            yield (x, y), _value
+            yield (x, y), string.ascii_lowercase.index(value) + 1 if value in string.ascii_lowercase else value
 
 
 AREA = dict(create_grid())
@@ -25,6 +18,17 @@ MOVES = [
     lambda x, y: (x, y - 1),
     lambda x, y: (x, y + 1),
 ]
+
+
+def hight_translation(value):
+    match value:
+        case 'S':
+            _value = 1
+        case 'E':
+            _value = 26
+        case _:
+            _value = value
+    return _value
 
 
 def solve_path(start_elevation, end_elevation):
@@ -38,18 +42,19 @@ def solve_path(start_elevation, end_elevation):
         steps += 1
 
         currents = set(chain.from_iterable(
-            [p for p in [m(*c) for m in MOVES] if p in AREA and AREA[c] <= AREA[p] + 1] for c in currents))
+            [p for p in [m(*c) for m in MOVES] if
+             p in AREA and hight_translation(AREA[c]) <= hight_translation(AREA[p]) + 1] for c in currents))
         visited.update(currents)
 
     return steps
 
 
 def run_1():
-    return solve_path(0, 27)
+    return solve_path('S', 'E')
 
 
 def run_2():
-    return solve_path(1, 27)
+    return solve_path(1, 'E')
 
 
 print(run_1())
