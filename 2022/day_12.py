@@ -20,7 +20,7 @@ MOVES = [
 ]
 
 
-def hight_translation(value):
+def hight(value):
     match value:
         case 'S':
             _value = 1
@@ -43,7 +43,7 @@ def solve_path(start_elevation, end_elevation):
 
         currents = set(chain.from_iterable(
             [p for p in [m(*c) for m in MOVES] if
-             p in AREA and hight_translation(AREA[c]) <= hight_translation(AREA[p]) + 1] for c in currents))
+             p in AREA and hight(AREA[c]) <= hight(AREA[p]) + 1] for c in currents))
         visited.update(currents)
 
     return steps
