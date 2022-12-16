@@ -1,5 +1,5 @@
 from copy import copy
-from itertools import product, chain, combinations
+from itertools import product, combinations
 from time import time
 
 start = time()
@@ -63,7 +63,7 @@ def run_1():
 
     time_left = 30
     location = "AA"
-    return max([potential(location, v, time_left, set(x for x in valves if x != v)) for v in valves])
+    return max(potential(location, v, time_left, set(x for x in valves if x != v)) for v in valves)
 
 
 def run_2():
@@ -71,10 +71,10 @@ def run_2():
     score = 0
     time_left = 26
     location = "AA"
-    for player in chain(*map(lambda x: combinations(valves, x), range(1, len(valves) // 2 + 1))):
+    for player in combinations(valves, len(valves) // 2):
         elephant = valves.difference(player)
-        player_score = max([potential(location, v, time_left, set(x for x in player if x != v)) for v in player])
-        elephant_score = max([potential(location, v, time_left, set(x for x in elephant if x != v)) for v in elephant])
+        player_score = max(potential(location, v, time_left, set(x for x in player if x != v)) for v in player)
+        elephant_score = max(potential(location, v, time_left, set(x for x in elephant if x != v)) for v in elephant)
         score = max(score, player_score + elephant_score)
     return score
 
