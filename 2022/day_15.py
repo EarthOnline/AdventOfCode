@@ -1,5 +1,8 @@
 import string
 from functools import reduce
+from time import time
+
+start = time()
 
 INPUT = open("./input_files/input_15", "r").read().strip("\n")
 
@@ -46,7 +49,10 @@ def join(ranges, range_x):
 
 
 def run_1():
-    return sum(y - x for x, y in reduce(join, map(lambda p: p.blocked_at_y(2000000), PAIRS), set()))
+    y = 2000000
+    blocked_space = sum(e - s + 1 for s, e in reduce(join, map(lambda p: p.blocked_at_y(y), PAIRS), set()))
+    beacon_space = len(set(p.beacon[0] for p in PAIRS if p.beacon[1] == y))
+    return blocked_space - beacon_space
 
 
 def run_2():
@@ -57,4 +63,6 @@ def run_2():
 
 
 print(run_1())
+print((time() - start) * 10 ** 3)
 print(run_2())
+print((time() - start) * 10 ** 3)
