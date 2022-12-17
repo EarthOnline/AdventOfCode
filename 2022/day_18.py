@@ -1,11 +1,11 @@
 from time import time
 
 start = time()
-INPUT = open("./input_files/input_xx", "r").read().strip("\n")
+INPUT = open("./input_files/input_18", "r").read().strip("\n")
 
 
 def run_1():
-    return
+    return INPUT
 
 
 def run_2():
