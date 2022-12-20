@@ -30,7 +30,7 @@ def run(c1, c2, c31, c32, c41, c42, times):
 
     for t in range(times):
         _options = set(o for o in options if
-                       o[7] == max_geodes and o[0] <= max_ore and o[1] <= c32 and o[2] <= c42)
+                       o[7] >= (max_geodes - 1) and o[0] <= max_ore and o[1] <= c32 and o[2] <= c42)
         options = set()
         max_geodes = 0
 
