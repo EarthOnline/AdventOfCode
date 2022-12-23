@@ -37,7 +37,7 @@ def yell(monkey):
     return OPPERATORS[opp](yell(monkey_1), yell(monkey_2))
 
 
-def unyell(monkey, target):
+def solve(monkey, target):
     if monkey == 'humn':
         return target
 
@@ -47,11 +47,11 @@ def unyell(monkey, target):
 
         _opp = TRANSLATE.get(opp, opp)
         # print(target, '=', _target, opp, abs(NEG_OPPERATORS[_opp](target, _target)))
-        result = unyell(monkey_2, abs(NEG_OPPERATORS[_opp](target, _target)))
+        result = solve(monkey_2, abs(NEG_OPPERATORS[_opp](target, _target)))
     except TypeError:
         _target = yell(monkey_2)
         # print(target, '=', NEG_OPPERATORS[opp](target, _target), opp, _target)
-        result = unyell(monkey_1, NEG_OPPERATORS[opp](target, _target))
+        result = solve(monkey_1, NEG_OPPERATORS[opp](target, _target))
     return result
 
 
@@ -64,10 +64,10 @@ def run_2():
     MONKEYS.pop('humn')
     try:
         target = yell(monkey_1)
-        result = unyell(monkey_2, target)
+        result = solve(monkey_2, target)
     except TypeError:
         target = yell(monkey_2)
-        result = unyell(monkey_1, target)
+        result = solve(monkey_1, target)
 
     return result
 
